@@ -38,7 +38,6 @@ class JsonVerifier:
         )
 
         actual = self.actual
-        key = None
         try:
             for key in path.split("."):
                 actual = actual[int(key)] if isinstance(actual, list) else actual[key]
@@ -50,6 +49,9 @@ class JsonVerifier:
             self._context.append(context)
         except IndexError:
             self._errors.append(f"{path=}, {expected=}, index error: {key}")
+            self._context.append(context)
+        except ValueError:
+            self._errors.append(f"{path=}, {expected=}, index is not int: {key!r}")
             self._context.append(context)
 
     def tally(self):
