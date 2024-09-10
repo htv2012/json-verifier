@@ -40,3 +40,13 @@ def test_verify_value(verifier):
 
     with pytest.raises(AssertionError):
         verifier.tally()
+
+
+def test_wrong_index_type(verifier):
+    verifier.verify_value("metadata.tags.foo", "scratch")
+    assert verifier.errors == [
+        "path='metadata.tags.foo', expected='scratch', index is not int: 'foo'",
+    ]
+
+    with pytest.raises(AssertionError):
+        verifier.tally()
