@@ -64,7 +64,7 @@ Here is a sample `pytest` output:
 
 ```none
 AssertionError: Verify JSON failed
-Actual:
+Object:
 {
     "metadata": {
         "name": "sandbox",
@@ -77,26 +77,26 @@ Actual:
 }
 Errors:
 - path='metadata.name', expected='staging', actual='sandbox'
-  /home/user/workspace/test_api.py(15) in test_api()
+  /home/user/workspace/test_api.py(11) in test_api()
           verifier.verify_value("metadata.name", "staging")
 
-- path='metadata.description', expected='Team sandbox', key error: description
-  /home/user/workspace/test_api.py(16) in test_api()
+- path='metadata.description', expected='Team sandbox', key error: 'description'
+  /home/user/workspace/test_api.py(12) in test_api()
           verifier.verify_value("metadata.description", "Team sandbox")
 
 - path='metadata.tags.0', expected='testing', actual='scratch'
-  /home/user/workspace/test_api.py(17) in test_api()
+  /home/user/workspace/test_api.py(13) in test_api()
           verifier.verify_value("metadata.tags.0", "testing")
 
 - path='metadata.tags.3', expected='non-production', index error: 3
-  /home/user/workspace/test_api.py(18) in test_api()
+  /home/user/workspace/test_api.py(14) in test_api()
           verifier.verify_value("metadata.tags.3", "non-production")
-```
 
 This output shows some important information:
 
 1. A formatted dump of the object under test
 2. A list of errors. Each complete with filename, line number, the function, the offending line, and why test failed
+```
 
 
 ## License

@@ -46,7 +46,7 @@ class JsonVerifier:
                 self._errors.append(f"{path=}, {expected=}, actual={obj!r}")
                 self._context.append(context)
         except KeyError:
-            self._errors.append(f"{path=}, {expected=}, key error: {key}")
+            self._errors.append(f"{path=}, {expected=}, key error: {key!r}")
             self._context.append(context)
         except IndexError:
             self._errors.append(f"{path=}, {expected=}, index error: {key}")

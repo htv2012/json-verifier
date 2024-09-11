@@ -33,7 +33,7 @@ def test_verify_value(verifier):
 
     assert verifier.errors == [
         "path='metadata.name', expected='staging', actual='sandbox'",
-        "path='metadata.description', expected='Team sandbox', key error: description",
+        "path='metadata.description', expected='Team sandbox', key error: 'description'",
         "path='metadata.tags.0', expected='testing', actual='scratch'",
         "path='metadata.tags.3', expected='non-production', index error: 3",
     ]
