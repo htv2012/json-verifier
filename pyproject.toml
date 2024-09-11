@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "json-verifier"
 dynamic = ["version"]
-description = ''
+description = "Allows a test to spot-check various values of a JSON object"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
-keywords = []
+keywords = ["pytest", "json"]
 authors = [
   { name = "Hai Vu", email = "haivu2004@gmail.com" },
 ]
