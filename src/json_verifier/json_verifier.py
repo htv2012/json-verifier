@@ -15,8 +15,8 @@ class JsonVerifier:
     detailed report for all failed assertions.
     """
 
-    def __init__(self, actual):
-        self.actual = actual
+    def __init__(self, obj):
+        self.obj = obj
         self._errors = []
         self._context = []
 
@@ -37,12 +37,13 @@ class JsonVerifier:
             *(caller.code_context or []),
         )
 
-        actual = self.actual
+        obj = self.obj
+        key = ""
         try:
             for key in path.split("."):
-                actual = actual[int(key)] if isinstance(actual, list) else actual[key]
-            if actual != expected:
-                self._errors.append(f"{path=}, {expected=}, {actual=}")
+                obj = obj[int(key)] if isinstance(obj, list) else obj[key]
+            if obj != expected:
+                self._errors.append(f"{path=}, {expected=}, actual={obj!r}")
                 self._context.append(context)
         except KeyError:
             self._errors.append(f"{path=}, {expected=}, key error: {key}")
@@ -65,8 +66,8 @@ class JsonVerifier:
 
         buffer = io.StringIO()
         buffer.write("Verify JSON failed\n")
-        buffer.write("Actual:\n")
-        json.dump(self.actual, buffer, indent=4)
+        buffer.write("Object:\n")
+        json.dump(self.obj, buffer, indent=4)
         buffer.write("\nErrors:\n")
         for error, context in zip(self._errors, self._context):
             buffer.write(f"- {error}\n")

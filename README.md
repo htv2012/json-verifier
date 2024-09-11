@@ -1,6 +1,6 @@
 # json-verifier
 
-`json-verifier` is a package which allows a tester to spot-check various values of a JSON object. 
+`json-verifier` is a package which allows a test to spot-check various values of a JSON object. 
 
 ## Installation
 
@@ -41,7 +41,7 @@ def test_api():
 
 While this test works, it contains a couple of issues:
 
-1. We want to check for all issues, but the above will stop at the first assertion failure and not testing the rest
+1. We want to check for all issues, but the above will stop at the first assertion failure and will not test the rest
 2. Notice that the actual value does not contain a "description" value. That means the expression `actual["metadata"]["description"]` will generate a `KeyError` exception
 3. Likewise, the expression `actual["metadata"]["tags"][3]` will generate an `IndexError` exception
 4. It would be nice to be able to shorthand the keys, especially when dealing with a deeply nested JSON object
@@ -60,7 +60,7 @@ def test_api(verifier):
         verifier.verify_value("metadata.tags.3", "non-production")
 ```
 
-Here is a sample output:
+Here is a sample `pytest` output:
 
 ```none
 AssertionError: Verify JSON failed
@@ -93,9 +93,9 @@ Errors:
           verifier.verify_value("metadata.tags.3", "non-production")
 ```
 
-This output shows important information
+This output shows some important information:
 
-1. A formatted dump of the actual object
+1. A formatted dump of the object under test
 2. A list of errors. Each complete with filename, line number, the function, the offending line, and why test failed
 
 
