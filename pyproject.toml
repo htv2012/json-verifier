@@ -26,10 +26,7 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Home = "https://github.com/htv2012/json-verifier"
-Documentation = "https://htv2012.github.io/json-verifier/"
-Issues = "https://github.com/htv2012/json-verifier/issues"
-Source = "https://github.com/htv2012/json-verifier"
+Homepage = "https://github.com/htv2012/json-verifier"
 
 [tool.hatch.version]
 path = "src/json_verifier/__about__.py"
