@@ -26,7 +26,8 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/htv2012/json-verifier#readme"
+Home = "https://github.com/htv2012/json-verifier"
+Documentation = "https://htv2012.github.io/json-verifier/"
 Issues = "https://github.com/htv2012/json-verifier/issues"
 Source = "https://github.com/htv2012/json-verifier"
 
