@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import inspect
 import io
 import json
@@ -15,8 +17,9 @@ class JsonVerifier:
     detailed report for all failed assertions.
     """
 
-    def __init__(self, obj):
+    def __init__(self, obj, separator="."):
         self.obj = obj
+        self.separator = separator
         self._errors = []
         self._context = []
 
@@ -40,7 +43,7 @@ class JsonVerifier:
         obj = self.obj
         key = ""
         try:
-            for key in path.split("."):
+            for key in self.split_path(path):
                 obj = obj[int(key)] if isinstance(obj, list) else obj[key]
             if obj != expected:
                 self._errors.append(f"{path=}, {expected=}, actual={obj!r}")
@@ -74,6 +77,22 @@ class JsonVerifier:
             for line in context:
                 buffer.write(f"  {line}\n")
         raise AssertionError(buffer.getvalue())
+
+    def split_path(self, path: int | str | list | tuple):
+        if isinstance(path, str):
+            return path.split(self.separator)
+
+        if isinstance(path, (list, tuple)):
+            return path
+
+        # We should not allow set/frozenset as path because the order is
+        # non deterministic
+        if isinstance(path, (set, frozenset)):
+            message = "Set and frozenset are not allowed as path"
+            raise TypeError(message)
+
+        # Other scala types
+        return [path]
 
     def __enter__(self):
         return self
