@@ -98,6 +98,9 @@ This output shows some important information:
 2. A list of errors. Each complete with filename, line number, the function, the offending line, and why test failed
 ```
 
+## Usage
+
+For additional usage tips, see usage.md
 
 ## License
 
