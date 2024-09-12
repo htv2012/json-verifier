@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import inspect
 import io
 import json
@@ -76,8 +78,21 @@ class JsonVerifier:
                 buffer.write(f"  {line}\n")
         raise AssertionError(buffer.getvalue())
 
-    def split_path(self, path: str):
-        return path.split(self.separator)
+    def split_path(self, path: int | str | list | tuple):
+        if isinstance(path, str):
+            return path.split(self.separator)
+
+        if isinstance(path, (list, tuple)):
+            return path
+
+        # We should not allow set/frozenset as path because the order is
+        # non deterministic
+        if isinstance(path, (set, frozenset)):
+            message = "Set and frozenset are not allowed as path"
+            raise TypeError(message)
+
+        # Other scala types
+        return [path]
 
     def __enter__(self):
         return self
