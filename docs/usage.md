@@ -20,8 +20,8 @@ By default, the key path such as "metadata.name" uses a period (dot) as separato
 {
     "support": {
         "versions": {
-            "1.1": True,
-            "1.2": True,
+            "1.1": true,
+            "1.2": true,
         }
 }
 ```
