@@ -44,7 +44,7 @@ def test_demo():
 
 ## Use List or Tuple as Key Path
 
-In cases wherethe keys might contain all sort of characters, we should use list or tuple as key paths:
+In cases where we cannot use any single character as separator, we should use list or tuple as key paths:
 
 ```python
 def test_demo():
