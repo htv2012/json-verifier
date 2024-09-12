@@ -16,6 +16,27 @@ def test_expect_pass(verifier):
         verifier.verify_value("metadata.tags.1", "pre-production")
 
 
+def test_key_path_types(verifier):
+    with verifier:
+        verifier.verify_value(("metadata", "tags", 0), "scratch")  # tuple with int
+        verifier.verify_value(("metadata", "name"), "sandbox")  # tuple
+        verifier.verify_value(["metadata", "name"], "sandbox")  # list
+
+
+@pytest.mark.parametrize(
+    ("obj", "path", "expected"),
+    [
+        pytest.param({True: "is true"}, True, "is true", id="bool"),
+        pytest.param(["foo", "bar"], 0, "foo", id="int"),
+        pytest.param({1.1: "foo"}, 1.1, "foo", id="float"),
+    ],
+)
+def test_key_path_simple_types(obj, path, expected):
+    verifier = JsonVerifier(obj)
+    with verifier:
+        verifier.verify_value(path, expected)
+
+
 def test_expect_fail(verifier):
     def do_failed_test():
         with verifier:
