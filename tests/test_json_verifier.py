@@ -16,13 +16,16 @@ def test_expect_pass(verifier):
         verifier.verify_value("metadata.tags.1", "pre-production")
 
 
-@pytest.mark.xfail
 def test_expect_fail(verifier):
-    with verifier:
-        verifier.verify_value("metadata.name", "staging")
-        verifier.verify_value("metadata.description", "Team sandbox")
-        verifier.verify_value("metadata.tags.0", "testing")
-        verifier.verify_value("metadata.tags.3", "non-production")
+    def do_failed_test():
+        with verifier:
+            verifier.verify_value("metadata.name", "staging")
+            verifier.verify_value("metadata.description", "Team sandbox")
+            verifier.verify_value("metadata.tags.0", "testing")
+            verifier.verify_value("metadata.tags.3", "non-production")
+
+    with pytest.raises(AssertionError):
+        do_failed_test()
 
 
 def test_verify_value(verifier):
