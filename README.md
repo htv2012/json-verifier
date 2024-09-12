@@ -100,7 +100,7 @@ This output shows some important information:
 
 ## Usage
 
-For additional usage tips, see usage.md
+For additional usage tips, see {% link docs/usage.md %}
 
 ## License
 
