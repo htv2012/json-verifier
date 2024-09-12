@@ -17,7 +17,7 @@ def test_split_non_default():
         pytest.param("a.b.c", ["a", "b", "c"], id="multiple keys"),
     ],
 )
-def test_int_path(path, expected):
+def test_split_path(path, expected):
     verifier = JsonVerifier({})
     assert verifier.split_path(path) == expected
 
