@@ -20,17 +20,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install Hatch
-      uses: pypa/hatch@install
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
-    - name: Static Analysis
+
+    - name: Install Dev Tools
+      run: uv sync --dev
+
+    - name: Ensure Code Are Formatted
       run: |
-        hatch run types:check
-        hatch fmt --check
+        uv run ruff format --check
+        uv run ruff check --select I .
+
+    - name: Static Analysis
+      run: uv run ruff check .
+        
     - name: Run Tests
       run: |
-        hatch run test
+        uv run pytest -v
