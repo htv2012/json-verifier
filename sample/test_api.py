@@ -2,7 +2,12 @@ from json_verifier import JsonVerifier
 
 
 def call_api():
-    return {"metadata": {"name": "sandbox", "tags": ["scratch", "pre-production", "experimental"]}}
+    return {
+        "metadata": {
+            "name": "sandbox",
+            "tags": ["scratch", "pre-production", "experimental"],
+        }
+    }
 
 
 def test_api():

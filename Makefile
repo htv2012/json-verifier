@@ -1,16 +1,28 @@
-.PHONY: sample all test cov lint
+.PHONY: all clean install lab lint py run test
 
-all: cov
+### Default target(s)
+all: test
 
-test: lint
-	hatch run test
-
-cov: lint
-	hatch run cov
-
-sample:
-	hatch run pytest -s -v sample
-
+### Perform static analysis
 lint:
-	hatch run types:check
-	hatch fmt
+	uv run ruff check --select I --fix .
+	uv run ruff format .
+	uv run ruff check . --fix
+
+### Run unit tests
+test: lint
+	uv run pytest -s -v
+
+### Clean up generated files
+clean:
+	uv clean
+	rm -fr .ruff_cache .venv
+
+### Start a Python interpreter
+py:
+	uv run ipython
+
+### Start a Jupyter Lab
+lab:
+	uv run jupyter lab
+

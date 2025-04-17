@@ -5,7 +5,12 @@ from json_verifier import JsonVerifier
 
 @pytest.fixture
 def verifier():
-    actual = {"metadata": {"name": "sandbox", "tags": ["scratch", "pre-production", "experimental"]}}
+    actual = {
+        "metadata": {
+            "name": "sandbox",
+            "tags": ["scratch", "pre-production", "experimental"],
+        }
+    }
     return JsonVerifier(actual)
 
 
