@@ -16,6 +16,8 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
@@ -33,6 +35,7 @@ build-backend = "hatchling.build"
 dev = [
     "pytest>=8.3.5",
     "pytest-cov>=6.1.1",
+    "ruff>=0.11.6",
 ]
 
 [tool.pytest.ini_options]
