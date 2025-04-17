@@ -106,7 +106,7 @@ wheels = [
 
 [[package]]
 name = "json-verifier"
-version = "0.1.0"
+version = "0.6.1"
 source = { editable = "." }
 
 [package.dev-dependencies]
