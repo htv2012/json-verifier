@@ -3,8 +3,11 @@ from __future__ import annotations
 import inspect
 import io
 import json
+import typing
 
 __all__ = ["JsonVerifier"]
+
+KeyPath = typing.TypeVar("KeyPath", str, typing.Tuple)
 
 
 class JsonVerifier:
