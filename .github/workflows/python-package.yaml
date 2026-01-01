@@ -30,7 +30,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
 
-    - name: Install Dev Tools
+    - name: Install Development Tools
       run: uv sync --dev
 
     - name: Ensure Code Are Formatted
@@ -43,6 +43,6 @@ jobs:
         uv run ruff check .
         uv run ty check src tests
         
-    - name: Run Tests
+    - name: Run Unit Tests
       run: |
         uv run pytest -v
