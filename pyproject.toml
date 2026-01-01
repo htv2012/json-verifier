@@ -1,6 +1,6 @@
 [project]
 name = "json-verifier"
-version = "0.6.1"
+version = "0.6.2"
 description = "Allows a test to spot-check various values of a JSON object"
 keywords = ["pytest", "json"]
 license = "MIT"
@@ -24,8 +24,8 @@ classifiers = [
 dependencies = []
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.21,<0.10.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
